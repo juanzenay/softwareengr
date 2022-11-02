@@ -16,3 +16,88 @@ a {
     color: unset;
     text-decoration: none;
 }
+
+.gradient__bg { /*this is our gradient for background*/
+
+    /* ff 3.6+ */
+    background:-moz-linear-gradient(90deg, rgba(142, 168, 195, 1) 0%, rgba(141, 145, 153, 1) 48%, rgba(61, 65, 67, 1) 100%); 
+
+    /* safari 5.1+,chrome 10+ */
+    background:-webkit-linear-gradient(90deg, rgba(142, 168, 195, 1) 0%, rgba(141, 145, 153, 1) 48%, rgba(61, 65, 67, 1) 100%);
+
+    /* opera 11.10+ */
+    background:-o-linear-gradient(90deg, rgba(142, 168, 195, 1) 0%, rgba(141, 145, 153, 1) 48%, rgba(61, 65, 67, 1) 100%);
+
+    /* ie 6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3D4143', endColorstr='#8EA8C3', GradientType=0 );
+
+    /* ie 10+ */
+    background:-ms-linear-gradient(90deg, rgba(142, 168, 195, 1) 0%, rgba(141, 145, 153, 1) 48%, rgba(61, 65, 67, 1) 100%);
+
+    /* global 94%+ browsers support */
+    background:linear-gradient(90deg, rgba(142, 168, 195, 1) 0%, rgba(141, 145, 153, 1) 48%, rgba(61, 65, 67, 1) 100%);
+
+}
+
+.gradient__text { /*this gradients text*/
+    background: var(--gradient-text);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+       
+.section__padding {
+    padding: 4rem 6rem;
+}
+.section__margin {
+    padding: 4rem 6rem;
+}
+
+/*animations from animista*/
+.scale-up-center {
+	-webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+                transform: scale(0.5);
+    }
+    100% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+    }
+}
+@keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+                transform: scale(0.5);
+    }
+    100% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+    }
+}
+
+/*for medium sized screens-tablet*/
+@media screen and (max-width: 700px){
+    .section__padding {
+        padding: 4rem 6rem;
+    }
+    .section__margin {
+        padding: 4rem;
+    }
+}
+
+/*for small sized screens-phone*/
+@media screen and (max-width: 550px){
+    .section__padding {
+        padding: 4rem 2rem;
+    }
+    .section__margin {
+        padding: 4rem 2rem;
+    }
+}
+
+  
