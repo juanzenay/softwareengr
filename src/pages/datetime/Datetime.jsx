@@ -1,43 +1,38 @@
 import React from 'react'
 import './datetime.css';
 
+import "react-datepicker/dist/react-datepicker.css";
+
 import Box from '@mui/material/Box';
 
 /*
 for input - <input type= "varname" placeholder "placeholder"
 for button- button type = "button" > xxx <button />
 */
+import Datepick from './Datepick';
 
 const Datetime = () => {
   return (
-    <div>Datetime
+    <div>
       <div className="gradient__bg">
-        <div className="datetime__box">
-          <Box sx={{ borderRadius: '10px' }}
-          height= {46} width = {200} fontSize= {24} 
-          display="flex" justifyContent="center" 
-          alignItems="center" bgcolor='black' color = 'white'>
-            Pick your date:
-            
-          </Box>
+        <div className="padded__small">
+          <div className='padded__small__text'>
+              Pick your date:
+          </div>
         </div>
-        <div>
-          <Box sx={{ borderRadius: '10px' }}
-          height= {46} width = {200} fontSize= {24} 
-          display="flex" justifyContent="center" 
-          alignItems="center" bgcolor='black' color = 'white'>
+        <div className='date__picker'>
+        <Datepick />
+        </div>
+        <div className = "padded__small__time">
+          <div className='padded__small__text'>
             Pick your time:
-            
-          </Box>
+          </div>
         </div>
-        <div>
-          <Box sx={{ borderRadius: '10px' }}
-          height= {46} width = {962} fontSize= {24} 
-          m = 'auto' display="flex" justifyContent="center" 
-          alignItems="center" bgcolor='black' color = 'white'>
+
+        <div className='long__bar'>
+          <div className='padded__bar__text'>
             Credit card information and fee may be necessary to finalize reservation.
-            
-          </Box>
+          </div>
         </div>
       </div>
     </div>

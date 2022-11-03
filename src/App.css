@@ -6,7 +6,6 @@
     padding: 0;
     margin: 0;
     scroll-behavior: smooth;
-    font-family: serif;
 }
 
 body {
@@ -17,6 +16,18 @@ a {
     color: unset;
     text-decoration: none;
 }
+
+.bg { 
+    /* The image used */
+  
+    /* Full height */
+    height: 100%; 
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 
 .gradient__bg { /*this is our gradient for background*/
 
