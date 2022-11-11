@@ -96,8 +96,9 @@
     position: absolute;
     width: 331px;
     height: 39px;
+    top: 9px;
+    left: 9px;
     
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;

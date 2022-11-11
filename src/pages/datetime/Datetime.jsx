@@ -72,9 +72,9 @@ const Datetime = () => {
         placeholderText="Click Me"
         /> 
         <p className='card_notice'>Reservations on busy days may require a card on file and a no show fee</p>
-        <div className='confirm_button'>
+        <button className='confirm_button'>
           <p className='confirm_text'>Confirm and continue</p>
-        </div>
+        </button>
       </div>
     </div>
   )
