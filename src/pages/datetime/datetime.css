@@ -1,85 +1,105 @@
-* {
+*{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 39px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.bg{
+    /*Background*/
+    width:100%;
+    min-width:1000px;
+    height:auto;
+    position: absolute;
+
+    background: #ABB1CE;
+}
+
+.main_rectangle{
+    /*Big rectangle wrapper*/
     box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    scroll-behavior: smooth;
-}
 
-.padded__small {
     position: absolute;
-    width: 100px;
-    height: 35px;
-    left: 239px;
-    top: 247px;
+    width: 1005px;
+    height: 1191px;
+    left: 225px;
+    top: 32px;
 
-    background: #8EA8C3;
-    border-radius: 10px;    
-}
-.padded__small__text{
-    text-align: center;
-    font-family: 'Besley';
-    font-style: normal;
-    font-weight: 400;
-    line-height: 35px;
-    color: #000000;
+    background: #F5FFFE;
+    border: 9px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 80px;
 }
 
-
-.padded__small__time{
+.pick_date{
+    /* Pick your date: */
     position: absolute;
-    width: 100px;
-    height: 35px;
-    left: 239px;
-    top: 549px;
+    width: 654px;
+    height: 39px;
+    left: 176px;
+    top: 211px;
 
-    background: #8EA8C3;
+    font-size: 32px;
+}
+
+.date_container {
+    /*Holds date picker*/
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 250px;
+    height: 54px;
+    left: 378px;
+    top: 353px;
+
+    font-size: 30px;
+    
+    background: #E1F0DE;
+    border: 4px solid #000000;
     border-radius: 10px;
 }
 
-
-.long__bar{
+.card_notice{
     position: absolute;
-    width: 962px;
-    height: 46px;
-    left: 239px;
-    top: 794px;
-    bottom: 184px;
+    width: 801px;
+    height: 30px;
+    left: 102px;
+    top: 600px;
 
-    background: #8EA8C3;
+    font-size: 32px;
+}
+
+.web_container{
+    width:100%;
+    min-width:1000px;
+    height:auto;
+}
+
+.confirm_button{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 350px;
+    height: 58px;
+    left: 328px;
+    top: 710px;
+
+    background: #E1F0DE;
+    border: 4px solid #000000;
     border-radius: 10px;
 }
-.padded__bar__text{
-    text-align: center;
-    font-family: 'Besley';
+
+.confirm_text{
+    position: absolute;
+    width: 331px;
+    height: 39px;
+    
+
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    line-height: 46px;
-    color: #000000;
-}
-
-.date__picker{
-    position: absolute;
-    width: 400px;
-    height: 258px;
-    left: 520px;
-    top: 247px;
-
-    background: #D9D9D9;
-    border-radius: 10px;
-}
-
-.date{
-    position: absolute;
-    width: 55px;
-    height: 40px;
-    left: 262px;
-    top: 244px;
-
-    font-family: 'Besley';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 40px;
-
-    color: #000000;
+    font-size: 32px;
 }
