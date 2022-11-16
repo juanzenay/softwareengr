@@ -14,11 +14,32 @@
   --color-subtext: #FF8A71;
 }
 
-* {
+.bg2{
+  /*Background*/
+  min-width: 1000px;
+  height: 100vh;
+  width: 100vw;
+  background: #ABB1CE;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.main_rectangle2{
+  /*Big rectangle wrapper*/
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  scroll-behavior: smooth;
+
+  position: relative;
+  width: 70%;
+  left: 15%;
+  top: 1%;
+
+  background: #F5FFFE;
+  border: 9px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 80px;
 }
 
 .standard-button, .secondary-button {
