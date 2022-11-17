@@ -24,7 +24,7 @@ const Datetime = ({navigate}) => {
         placeholderText="Click Me"
         /> 
         <p className='card_notice'>Reservations on busy days may require a card on file and a no show fee</p>
-        <button className='confirm_button'>
+        <button className='confirm_button' onClick={() => navigate('/')}> 
           <p className='confirm_text'>Confirm and continue</p>
         </button>
       </div>
