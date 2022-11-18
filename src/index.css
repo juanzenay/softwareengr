@@ -13,3 +13,78 @@
   --color-text: #81AFDD;
   --color-subtext: #FF8A71;
 }
+
+.bg2{
+  /*Background*/
+  min-width: 1000px;
+  height: 100vh;
+  width: 100vw;
+  background: #ABB1CE;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.main_rectangle2{
+  /*Big rectangle wrapper*/
+  box-sizing: border-box;
+
+  position: relative;
+  width: 70%;
+  left: 15%;
+  top: 1%;
+
+  background: #F5FFFE;
+  border: 9px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 80px;
+}
+
+.standard-button, .secondary-button {
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #00ACEC;
+  font-style: normal;
+  text-align: center;
+  font-size: 20px;
+  margin: 2%;
+  padding: 1rem;
+  min-width: 200px;
+  width: 15%;
+  cursor:pointer;
+}
+
+.standard-button {
+  background: #00ACEC;
+  color: #FFFFFF;
+}
+
+.standard-button:hover {
+  background: #FFFFFF;
+  color: #00ACEC;
+}
+
+.standard-button:disabled:hover{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.standard-button:disabled
+{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor:not-allowed;
+}
+
+.secondary-button {
+  background: #ffffff;
+  color: #00acec;
+}
+
+.secondary-button:hover {
+  box-shadow: 1px 1px #00acec;
+}

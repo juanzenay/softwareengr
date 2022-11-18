@@ -1,0 +1,25 @@
+.viewreservation-label {
+    font-style: normal;
+    font-size: 29.5781px;
+    line-height: 49px;
+    letter-spacing: -0.015em;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: bold;
+    margin-top: 2%;
+    }
+
+.viewreservation-title {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 39.4375px;
+        line-height: 59px;
+        letter-spacing: -0.015em;
+        color: #000000;
+}
+
+.viewreservation-content{
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    flex: .65;
+}
