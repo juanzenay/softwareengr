@@ -3,8 +3,14 @@ import './datetime.css';
 import react, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+var date
+var time
+
 
 const Datetime = ({navigate}) => {
+  const setData = (date, time) => {
+    navigate('/reservation')
+  }
   const [startDate, setStartDate] = useState(new Date());
 
   let handleColor = (time) => {
@@ -24,7 +30,7 @@ const Datetime = ({navigate}) => {
         placeholderText="Click Me"
         /> 
         <p className='card_notice'>Reservations on busy days may require a card on file and a no show fee</p>
-        <button className='confirm_button' onClick={() => navigate('/')}> 
+        <button className='confirm_button' onClick={() => setData(date,time)}> 
           <p className='confirm_text'>Confirm and continue</p>
         </button>
       </div>
