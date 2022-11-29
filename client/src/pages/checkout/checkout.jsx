@@ -30,7 +30,7 @@ const Checkout = ({navigate}) => {
         if(requireCredit){
             toggleInputCredit(e);
         }else{
-            navigate('/reservation');
+            navigate('/reservation/1');
         }
     };
     const handleCVV = (e) => {

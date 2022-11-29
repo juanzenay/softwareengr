@@ -14,16 +14,17 @@ import './App.css';
 
 const App = () => {
   let navigate = useNavigate();
-
+  
   return (
     <div classname = "App">
+      
       <Routes>
         <Route path="/datetime" element={<Datetime navigate = {navigate}/>} />
         <Route path="/checkout" element={<Checkout navigate = {navigate}/>} />
-        <Route path="/reservation" element={<ViewReservation navigate = {navigate}/>} />
+        <Route path="/reservation/:id" element={<ViewReservation navigate = {navigate}/>} />
         <Route path="/guestInfo" element = {<GuestInfo navigate = {navigate} />} />
         <Route path="/login" element = {<LoginPage navigate = {navigate} />} />
-        <Route path="*" element={<Navigate replace to="/" />} />
+        <Route path="*" element={<Navigate replace to="/login" />} />
       </Routes>
     </div>
   )
