@@ -4,17 +4,11 @@ import react, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-
-
 const Datetime = ({navigate}) => {
 
-  const[reservation_Date, setReservationDate] = useState('');
-  const[reservation_Time, setReservationTime] = useState('');
-
   const handlesubmit = event => {
-    console.log('handlesubmit ran');
     event.preventDefault();
-    console.log(JSON.stringify(new Date(2006, 0, 2, 15, 4, 5)));
+    console.log(startDate);
     //console.log('Date: ', reservation_Date);
     //console.log('Time: ', reservation_Time);
   }
@@ -44,7 +38,7 @@ const Datetime = ({navigate}) => {
           /> 
         </form>
         <label className='card_notice'>Reservations on busy days may require a card on file and a no show fee</label>
-        <button type= "submit" className='confirm_button'> 
+        <button type= "submit" className='confirm_button' onClick = {handlesubmit}> 
           <label className='confirm_text'>Confirm and continue</label>
         </button> 
       </div>
