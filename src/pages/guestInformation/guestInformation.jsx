@@ -3,6 +3,7 @@ import React, { useState, useEffect} from 'react';
 import './guestInformation.css';
 
 const GuestInfo = (navigate) => {
+
     return(
         <>
             <div className = 'bg2'>

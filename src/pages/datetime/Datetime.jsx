@@ -9,13 +9,15 @@ const Datetime = ({navigate}) => {
   const handlesubmit = event => {
     event.preventDefault();
     console.log(startDate);
+
+    navigate('/reservation')
     //console.log('Date: ', reservation_Date);
     //console.log('Time: ', reservation_Time);
   }
 
-  const setData = (date, time) => {
+  const setData = event => {
     
-    //navigate('/reservation')
+    navigate('/reservation')
   }
   const [startDate, setStartDate] = useState(new Date());
 
