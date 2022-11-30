@@ -7,8 +7,12 @@ router.get('/', reservationController.getReservations);
 
 router.get('/:id/', reservationController.getReservation);
 
-router.post('/', (req, res) => {
-  res.json('POST reservations')
+router.get('/users/:id/', reservationController.getReservation);
+
+router.get('/:date/:time/', (req, res) => {
+  res.json('GET reservations by date and time')
 })
+
+router.post('/', reservationController.createReservation);
 
 module.exports = router;
