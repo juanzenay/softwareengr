@@ -14,7 +14,7 @@ const GuestInfo = (navigate) => {
         event.preventDefault();
         console.log('Name:', guest_Name);
         console.log('# of Guests:', guest_Number);
-        console.log('Addy:', guest_Address);
+        console.log('Address:', guest_Address);
         console.log('Phone:', guest_Phone);
     };
 
@@ -81,3 +81,4 @@ const GuestInfo = (navigate) => {
 };
 
 export default GuestInfo;
+
