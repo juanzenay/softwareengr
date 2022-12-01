@@ -40,8 +40,7 @@
     width: 654px;
     height: 39px;
     left: 176px;
-
-    font-size: 32px;
+    top: 110px;
 }
 
 .date_container {
@@ -52,13 +51,7 @@
     width: 250px;
     height: 54px;
     left: 378px;
-    top: 80px;
-
-    font-size: 30px;
-    
-    background: #E1F0DE;
-    border: 4px solid #000000;
-    border-radius: 10px;
+    top: 150px;
 }
 
 .card_notice{
@@ -66,7 +59,7 @@
     width: 801px;
     height: 30px;
     left: 102px;
-    top: 190px;
+    top: 200px;
 
     font-size: 32px;
 }
@@ -101,5 +94,16 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
+    font-size: 32px;
+}
+
+.num-guests{
+    /*Holds guest number*/
+    position: absolute;
+    width: 654px;
+    top:10px;
+    height: 39px;
+    left: 176px;
+
     font-size: 32px;
 }

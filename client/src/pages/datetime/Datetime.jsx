@@ -7,18 +7,17 @@ import "react-datepicker/dist/react-datepicker.css";
 const Datetime = ({navigate}) => {
 
   const handlesubmit = event => {
+    console.log('handleSubmit ran');
     event.preventDefault();
     console.log(startDate);
+    console.log('# of Guests:', guest_Number);
 
     navigate('/checkout')
     //console.log('Date: ', reservation_Date);
     //console.log('Time: ', reservation_Time);
   }
 
-  const setData = event => {
-    
-    navigate('/reservation')
-  }
+  const[guest_Number, setGuestNumber] = useState('');
   const [startDate, setStartDate] = useState(new Date());
 
   let handleColor = (time) => {
@@ -28,9 +27,26 @@ const Datetime = ({navigate}) => {
     <div className = 'bg'>
       <div className = 'main_rectangle'>
         <form onSubmit={handlesubmit}>
-          <label className='pick_date'>Pick the date and time for your reservation:</label>
+          <div className='guest-content'>
+            <div className='num-guests'>
+            <label className = "guest-account-label">Number of Guests: </label>
+            <input
+              type="text"
+              id="GuestNumber"
+              placeholder="Enter number of guests here!"
+              className="checkout-textfield"
+              required="true"
+              value={guest_Number}
+              onChange={event => setGuestNumber(event.target.value)}
+          /><br/><br/>
+          </div>
+          </div>
+          <div className='pick_date'>
+          <label className = "guest-account-label">Choose your date and time: </label>
+          </div>
+          <div className = 'date_container'>
           <DatePicker 
-            className='date_container'
+            className='checkout-textfield'
             showTimeSelect
             selected={startDate}
             onChange={(date) => setStartDate(date)}
@@ -38,6 +54,7 @@ const Datetime = ({navigate}) => {
             isClearable
             placeholderText="Click Me"
           /> 
+        </div>
         </form>
         <label className='card_notice'>Reservations on busy days may require a card on file and a no show fee</label>
         <button type= "submit" className='confirm_button' onClick = {handlesubmit}> 

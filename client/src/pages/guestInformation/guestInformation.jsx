@@ -5,7 +5,7 @@ import './guestInformation.css';
 const GuestInfo = (navigate) => {
 
     const[guest_Name, setGuestName] = useState('');
-    const[guest_Number, setGuestNumber] = useState('');
+    const[guest_Number, setGuestNumber] = useState('');//
     const[guest_Address, setGuestAddress] = useState('');
     const[guest_Phone, setGuestPhone] = useState('');
 
@@ -13,7 +13,7 @@ const GuestInfo = (navigate) => {
         console.log('handleSubmit ran');
         event.preventDefault();
         console.log('Name:', guest_Name);
-        console.log('# of Guests:', guest_Number);
+        console.log('# of Guests:', guest_Number);//
         console.log('Address:', guest_Address);
         console.log('Phone:', guest_Phone);
     };
@@ -34,18 +34,6 @@ const GuestInfo = (navigate) => {
                                             required="true"
                                             value={guest_Name}
                                             onChange={event => setGuestName(event.target.value)}
-                                        /><br/><br/>
-                        </div>
-                        <div className='guest-content'>
-                                    <label className = "guest-account-label">Number of Guests: </label>
-                                    <input
-                                            type="text"
-                                            id="GuestNumber"
-                                            placeholder="Enter number of guests here!"
-                                            className="checkout-textfield"
-                                            required="true"
-                                            value={guest_Number}
-                                            onChange={event => setGuestNumber(event.target.value)}
                                         /><br/><br/>
                         </div>
                         <div className='guest-content'>
