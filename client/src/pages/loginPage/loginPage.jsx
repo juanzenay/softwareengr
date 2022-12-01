@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 
 import './loginPage.css';
 
-const LoginPage = (navigate) => {
+const LoginPage = ({navigate}) => {
     let data = {'user':'', 'password':''};
 
     return(
