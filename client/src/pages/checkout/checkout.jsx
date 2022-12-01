@@ -6,19 +6,16 @@ const Checkout = ({navigate}) => {
     let requireCredit = true
     let signedIn = false
     const today = new Date()
-    let data = {'peoplenum': 1, 'date': today.getDate()+'-'+ today.getMonth() + '-' + today.getFullYear(), 'time':`${today.getHours()}:00`};
+    let data = {'guests': 1, 'date': today.getDate()+'-'+ today.getMonth() + '-' + today.getFullYear(), 'time':`${today.getHours()}:00`};
     const [ccname, setCCName] = useState('');
     const [ccnum, setCCNum] = useState('');
     const [cvv, setCVV] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [ccdate, setCCDate] = useState(new Date());
-    const [hasAccount, setHasAccount] = useState(false);
     const [inputCredit, setInputCredit] = useState(false);
     
-    const changeLoginRegister  = (e) =>{
-        e.preventDefault();
-		e.stopPropagation();
-		setHasAccount(!hasAccount);
-	};
     const toggleInputCredit = (e) => {
         e.preventDefault();
 		e.stopPropagation();
@@ -53,7 +50,7 @@ const Checkout = ({navigate}) => {
                     <div className="checkout-content">
                         <div className='checkout-content'>
                             <label className="checkout-title">Checkout</label>
-                            <label className="checkout-label">Number of people: {data.peoplenum}</label>
+                            <label className="checkout-label">Number of people: {data.guests}</label>
                             <label className="checkout-label">Date: {data.date}</label>
                             <label className="checkout-label">Time: {data.time}</label>		
                         </div>
@@ -61,9 +58,22 @@ const Checkout = ({navigate}) => {
                     {!signedIn && <form id="checkout-account-form" action="/" method="get">
                         <div className="checkout-account-content">
                             <div className='checkout-content'>
-                                <label className="checkout-account-label" >Create an account or login to save your reservation</label>
-                                    <div className="checkout-content"><label className="checkout-account-label"  onClick={changeLoginRegister} style={{cursor: 'pointer', textDecoration:'underline', color:'blue'}}>Already have an account?</label></div>
-                                
+                                <label className="checkout-account-label" >Create an account to save your reservation</label>
+                                    <div className="checkout-content"></div>
+
+                                <div className="checkout-content">
+                                    <label className="checkout-account-label">Email: </label>
+                                    <input
+                                        type="email"
+                                        name="checkoutemail"
+                                        placeholder="Email"
+                                        className="checkout-textfield"
+                                        required="true"
+                                        onChange={event => setEmail(event.target.value)}
+                                        value={email}
+                                    />
+                                </div>
+
                                 <div className="checkout-content">
                                     <label className="checkout-account-label">Username: </label>
                                     <input
@@ -72,8 +82,8 @@ const Checkout = ({navigate}) => {
                                         placeholder="Username"
                                         className="checkout-textfield"
                                         required="true"
-                                        //onChange={event => }
-                                        //value={username}
+                                        onChange={event => setUsername(event.target.value)}
+                                        value={username}
                                     />
                                 </div>
                                 
@@ -85,13 +95,13 @@ const Checkout = ({navigate}) => {
                                         placeholder="********"
                                         className="checkout-textfield"
                                         required="true"
-                                        //onChange={event => }
-                                        //value={password}
+                                        onChange={event => setPassword(event.target.value)}
+                                        value={password}
                                     />
                                 </div>
                                 <button type="submit" className="standard-button" style={{minWidth:'150px',
                                     width:'10%', fontSize:'100%', padding:'0.5rem'}}>
-                                    {hasAccount?'Login' :'Create account'}
+                                    Create account
                                 </button>
                                 
                                 
@@ -102,7 +112,7 @@ const Checkout = ({navigate}) => {
                     
                     </div>
                     <div className="checkout-flexrow" style={{margin: 'auto'}}>
-                            <button type="button"  className="secondary-button">
+                            <button type="button"  className="secondary-button" onClick={() => navigate('/datetime')}>
                                 Back
                             </button>
                             <button type="button" className="standard-button" disabled={!signedIn} onClick={handleConfirm}>

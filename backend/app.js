@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var sql = require('mssql');
 var session = require('express-session');
 var http = require('http');
 var sql = require('mssql');
@@ -13,6 +14,7 @@ var usersRouter = require('./routes/users');
 var accountsRouter = require('./routes/accounts');
 var reservationsRouter = require('./routes/reservations');
 var layoutRouter = require('./routes/layout');
+var sessionHandler = require('./routes/session');
 
 var app = express();
 
@@ -29,7 +31,6 @@ const dbConfig = {
 	server: 'softwareeng.database.windows.net',
 	database: 'Reservation'
 };
-var useTrustedConnection = false;
 
 sql.connect(dbConfig, function (err, conn) {
     if (err) {
@@ -45,15 +46,16 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('123'));
+
 app.use(
-   session({
-      secret: process.env.SESSION_SECRET,
-      saveUninitialized: true,
-      resave: false,
-      cookie: {
-         httpOnly: true,
-         maxAge: parseInt(process.env.MAX_AGE)
-      }
+    session({
+       secret: process.env.SESSION_SECRET,
+       saveUninitialized: true,
+       resave: false,
+       cookie: {
+          httpOnly: true,
+          maxAge: parseInt(process.env.MAX_AGE)
+       }
 }))
 
 app.use('/', indexRouter);
@@ -61,6 +63,6 @@ app.use('/users', usersRouter);
 app.use('/accounts', accountsRouter);
 app.use('/reservations', reservationsRouter);
 app.use('/layout', layoutRouter);
-
+app.use('/session', sessionHandler);
 
 module.exports = app;

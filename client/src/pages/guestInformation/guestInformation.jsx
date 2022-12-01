@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 
 import './guestInformation.css';
 
-const GuestInfo = (navigate) => {
+const GuestInfo = ({navigate}) => {
 
     const[guest_Name, setGuestName] = useState('');
     const[guest_Number, setGuestNumber] = useState('');//
@@ -60,7 +60,7 @@ const GuestInfo = (navigate) => {
                                             onChange={event => setGuestPhone(event.target.value)}
                                         /><br/><br/>
                         </div>
-                        <button type = "submit">Continue to next step!</button>
+                        <button className="standard-button" onClick={() => navigate('/datetime')}>Submit Info</button>
                     </form>
                 </div>
             </div>

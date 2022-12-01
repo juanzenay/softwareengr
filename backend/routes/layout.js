@@ -1,9 +1,7 @@
 var express = require('express');
+var layoutController = require('../controllers/layoutController')
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', (req, res) => {
-  res.json('GET layout')
-})
+router.get('/', layoutController.getTables);
 
 module.exports = router;
