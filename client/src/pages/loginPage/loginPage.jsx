@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 
 import './loginPage.css';
 
-const LoginPage = (navigate) => {
+const LoginPage = ({navigate}) => {
     let data = {'user':'', 'password':''};
 
     return(
@@ -38,7 +38,7 @@ const LoginPage = (navigate) => {
                                         //value={username}
                                     />
                             </div>
-                            <button type = "submit" className = "standard-button" onClick={() => navigate('/reservation')} >Login</button>
+                            <button className="cc-popup-confirm" onClick={() => navigate('/datetime')}>Confirm</button>
                             <div className="login-content"><label className="login-account-label"  style={{cursor: 'pointer', textDecoration:'underline', color:'blue'}}><a href="/guestInfo">Continue as guest!</a></label></div>
                             
                             </div>
