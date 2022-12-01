@@ -1,6 +1,5 @@
 var http = require('http');
 var sql = require('mssql');
-var http = require('http');
 var fs = require('fs');
 
 const getReservations = async (req, res, next) => {

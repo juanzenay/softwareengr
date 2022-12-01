@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+var http = require('http');
+var sql = require('mssql');
+var fs = require('fs');
 
-/* GET home page. */
-router.get('/', (req, res) => {
-  res.json('GET layout')
-})
+const getTables = async (req, res, next) => {
+	try {
+		const data = (await sql.query`SELECT * FROM layout`).recordset;
+		res.json(await data);
+	} catch(error) {
+		next(error);
+	}
+};
 
-module.exports = router;
+module.exports = {getTables};
