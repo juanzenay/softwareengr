@@ -38,7 +38,9 @@ const LoginPage = (navigate) => {
                                         //value={username}
                                     />
                             </div>
-                            <div className="login-content"><label className="login-account-label"  style={{cursor: 'pointer', textDecoration:'underline', color:'blue'}}>Continue as guest</label></div>
+                            <button type = "submit" className = "standard-button" onClick={() => navigate('/reservation')} >Login</button>
+                            <div className="login-content"><label className="login-account-label"  style={{cursor: 'pointer', textDecoration:'underline', color:'blue'}}><a href="/guestInfo">Continue as guest!</a></label></div>
+                            
                             </div>
                         </div>
                     </label>
