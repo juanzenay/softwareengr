@@ -10,7 +10,7 @@ const Datetime = ({navigate}) => {
     event.preventDefault();
     console.log(startDate);
 
-    navigate('/reservation')
+    navigate('/checkout')
     //console.log('Date: ', reservation_Date);
     //console.log('Time: ', reservation_Time);
   }
