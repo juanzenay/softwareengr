@@ -89,9 +89,9 @@ const Datetime = ({navigate}) => {
             <div className='num-guests'>
             <label className = "guest-account-label">Number of Guests: </label>
             <input
-              type="text"
+              type="number"
               id="GuestNumber"
-              minValue="1"
+              min="1"
               placeholder="Enter number of guests here!"
               className="checkout-textfield"
               required="true"

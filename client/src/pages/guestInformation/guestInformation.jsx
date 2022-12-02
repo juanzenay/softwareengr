@@ -51,7 +51,7 @@ const GuestInfo = ({navigate}) => {
                         <div className='guest-content'>
                                     <label className = "guest-account-label">Phone Number: </label>
                                     <input
-                                            type="text"
+                                            type="number"
                                             id="GuestPhone"
                                             placeholder="Phone Number"
                                             className="checkout-textfield"

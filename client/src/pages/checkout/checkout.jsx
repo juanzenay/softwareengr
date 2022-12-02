@@ -125,7 +125,7 @@ const Checkout = ({navigate, signedIn, loading}) => {
         }
     }
 
-	return (
+    return (
             <div className = "bg2">
                 <div className="main_rectangle2">
                     <div className="checkout-content">
@@ -136,7 +136,7 @@ const Checkout = ({navigate, signedIn, loading}) => {
                             <label className="checkout-label">Time: {time}</label>		
                         </div>
                     </div>	
-                    {signedIn!=null || loading || 
+                    {!signedIn && 
                         <div className="checkout-account-content">
                             <div className='checkout-content'>
                                 <label className="checkout-account-label" >Create an account to save your reservation</label>
