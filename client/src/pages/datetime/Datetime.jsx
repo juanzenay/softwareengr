@@ -66,15 +66,3 @@ const Datetime = ({navigate}) => {
 }
 
 export default Datetime
-
-/*
-  <input
-          type = "text"
-          id = "reservationDate"
-          placeholder="MM/DD/YY"
-          required = "true"
-          className= "date_container"
-          value={reservation_Date}
-          onChange={event => setReservationDate(event.target.value)}
-          />
-*/
