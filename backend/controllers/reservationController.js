@@ -37,9 +37,22 @@ const getUserReservations = async (req, res, next) => {
 	}
 };
 
+const getReservationsByDateTime = async (req, res, next) => {
+	try {
+		const data = (await sql.query`SELECT * FROM reservations WHERE date = ${req.params.date}, time = ${req.params.time}`).recordset;
+		if(Array.isArray(data) && data.length === 0)
+			res.status(404).send('Not Found');
+		else
+			res.json(await data);
+			
+	} catch (error) {
+		next(error);
+	}
+};
+
 const createReservation = async (req, res, next) => {
 	try {
-		const data = (await sql.query`INSERT INTO Reservation.reservations (userid, tableid, date, time, credit) \
+		const data = (await sql.query`INSERT INTO reservations (userid, tableid, date, time, credit) \
 		OUTPUT INSERTED.* VALUES \
 		(${req.session.userid}, ${req.body.tableid}, ${req.body.date}, ${req.body.time}, ${req.body.guests}, ${req.body.credit||NULL})`).recordset[0];
 		res.json(data);
@@ -52,5 +65,6 @@ module.exports = {
 	createReservation,
 	getUserReservations,	
 	getReservations,
+	getReservationsByDateTime,
 	getReservation
 };

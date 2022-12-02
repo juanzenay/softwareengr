@@ -7,6 +7,10 @@ const Checkout = ({navigate}) => {
     let signedIn = false
     const today = new Date()
     let data = {'guests': 1, 'date': today.getDate()+'-'+ today.getMonth() + '-' + today.getFullYear(), 'time':`${today.getHours()}:00`};
+    const [guests, setGuests] = useState(data.guests);
+    const [date, setDate] = useState(data.date);
+    const [time, setTime] = useState(data.time);
+    const [tableids, setTableids] = useState([1,3]);
     const [ccname, setCCName] = useState('');
     const [ccnum, setCCNum] = useState('');
     const [cvv, setCVV] = useState('');
@@ -21,15 +25,57 @@ const Checkout = ({navigate}) => {
 		e.stopPropagation();
         setInputCredit(!inputCredit);
     };
+
+    const createAccount = (e) =>{
+        e.preventDefault();
+		e.stopPropagation();
+        return fetch(`http://localhost:3001/accounts`, {
+            method: 'POST',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: username,
+                email: email,
+                password: password
+            })
+        }).then(res => res.json())
+            .then(response => {
+                console.log('Success: ', response);
+            })
+            .catch(error => {
+                console.log(error);
+        });
+    };
+
     const handleConfirm = (e) =>{
         e.preventDefault();
 		e.stopPropagation();
-        if(requireCredit){
-            toggleInputCredit(e);
-        }else{
-            navigate('/reservation/1');
-        }
+        return fetch(`http://localhost:3001/reservations`, {
+            method: 'POST',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                guests: guests,
+                date: date,
+                time: time,
+                tableid: tableids,
+                credit: ccnum
+
+            })
+        }).then(res => res.json())
+            .then(response => {
+                console.log('Success: ', response);
+                navigate(`/reservation/${response}`);
+            })
+            .catch(error => {
+                console.log(error);
+                navigate('/datetime');
+            });
+
     };
+
     const handleCVV = (e) => {
         const pattern = /^[1-9]\d*(\d+)?$/i;
         if (e.target.value === '' || pattern.test(e.target.value)) {
@@ -50,12 +96,12 @@ const Checkout = ({navigate}) => {
                     <div className="checkout-content">
                         <div className='checkout-content'>
                             <label className="checkout-title">Checkout</label>
-                            <label className="checkout-label">Number of people: {data.guests}</label>
-                            <label className="checkout-label">Date: {data.date}</label>
-                            <label className="checkout-label">Time: {data.time}</label>		
+                            <label className="checkout-label">Number of people: {guests}</label>
+                            <label className="checkout-label">Date: {date}</label>
+                            <label className="checkout-label">Time: {time}</label>		
                         </div>
                     </div>	
-                    {!signedIn && <form id="checkout-account-form" action="/" method="get">
+                    {!signedIn && 
                         <div className="checkout-account-content">
                             <div className='checkout-content'>
                                 <label className="checkout-account-label" >Create an account to save your reservation</label>
@@ -99,8 +145,8 @@ const Checkout = ({navigate}) => {
                                         value={password}
                                     />
                                 </div>
-                                <button type="submit" className="standard-button" style={{minWidth:'150px',
-                                    width:'10%', fontSize:'100%', padding:'0.5rem'}}>
+                                <button type="button" className="standard-button" style={{minWidth:'150px',
+                                    width:'10%', fontSize:'100%', padding:'0.5rem'}} onClick={createAccount}>
                                     Create account
                                 </button>
                                 
@@ -108,14 +154,15 @@ const Checkout = ({navigate}) => {
                             </div>	
                         </div>
                         
-                    </form>}
+                    }
                     
                     </div>
                     <div className="checkout-flexrow" style={{margin: 'auto'}}>
                             <button type="button"  className="secondary-button" onClick={() => navigate('/datetime')}>
                                 Back
                             </button>
-                            <button type="button" className="standard-button" disabled={!signedIn} onClick={handleConfirm}>
+                            <button type="button" className="standard-button" disabled={!signedIn} 
+                            onClick={requireCredit? toggleInputCredit:handleConfirm}>
                                 Confirm
                             </button>
                             {inputCredit && <div className='checkout-cc-container'><div className="checkout-cc-popup">
@@ -159,7 +206,7 @@ const Checkout = ({navigate}) => {
                                                 value={ccdate} 
                                                 onChange={e=>setCCDate(e.target.value)}></input>
                                         </div>
-                                    <button className="cc-popup-confirm" onClick={() => navigate('/reservation')}>Confirm</button>
+                                    <button className="cc-popup-confirm" onClick={handleConfirm}>Confirm</button>
                                     <button onClick={toggleInputCredit} className="cc-popup-cancel">Cancel</button>
                                 </div>
                             </div>}

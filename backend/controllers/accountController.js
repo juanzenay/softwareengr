@@ -1,13 +1,28 @@
-var express = require('express');
-var router = express.Router();
+var http = require('http');
+var sql = require('mssql');
+var fs = require('fs');
 
-/* GET home page. */
-router.get('/', (req, res) => {
-  res.json('GET accounts')
-})
+const getAccounts = async (req, res, next) => {
+	try {
+		const data = (await sql.query`SELECT * FROM accounts`).recordset;
+		res.json(await data);
+	} catch(error) {
+		next(error);
+	}
+};
 
-router.post('/', (req, res) => {
-  res.json('POST account')
-})
+const createAccount = async (req, res, next) => {
+	try {
+		const data = (await sql.query`INSERT INTO accounts (username, email, password) \
+		OUTPUT INSERTED.* VALUES \
+		(${req.body.username}, ${req.body.email}, ${req.body.password})`).recordset[0];
+		res.json(data);
+	} catch (error) {
+		next(error);
+	}
+};
 
-module.exports = router;
+module.exports = {
+  getAccounts,
+  createAccount
+};

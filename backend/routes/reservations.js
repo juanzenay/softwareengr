@@ -8,9 +8,7 @@ router.get('/:id/', reservationController.getReservation);
 
 router.get('/users/:id/', reservationController.getUserReservations);
 
-router.get('/:date/:time/', (req, res) => {
-  res.json('GET reservations by date and time')
-})
+router.get('/:date/:time/', reservationController.getReservationsByDateTime);
 
 router.post('/', reservationController.createReservation);
 
