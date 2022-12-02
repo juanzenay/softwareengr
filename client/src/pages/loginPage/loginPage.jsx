@@ -44,7 +44,7 @@ const LoginPage = ({navigate, signedIn, loading}) => {
                         <label className="loginPage-title">Login or Continue as Guest</label>
                         <div className = "login-account-content">
                             <div className="login-content">
-                                <label className = "login-label">Enter your details below to login</label>
+                                <label className = "login-label">Enter your details below to login!</label>
                             <div className="login-content">
                                 <label className="login-account-label" style={{textDecoration:'underline', color:'red'}}>{error}</label>
                             </div>
