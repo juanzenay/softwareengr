@@ -39,7 +39,7 @@ const getUserReservations = async (req, res, next) => {
 
 const getReservationsByDateTime = async (req, res, next) => {
 	try {
-		const data = (await sql.query`SELECT * FROM reservations WHERE date = ${req.params.date}, time = ${req.params.time}`).recordset;
+		const data = (await sql.query`SELECT * FROM reservations WHERE date = ${req.params.date}, time = ${req.params.time}`).recordset[0];
 		if(Array.isArray(data) && data.length === 0)
 			res.status(404).send('Not Found');
 		else
@@ -52,9 +52,9 @@ const getReservationsByDateTime = async (req, res, next) => {
 
 const createReservation = async (req, res, next) => {
 	try {
-		const data = (await sql.query`INSERT INTO reservations (userid, tableid, date, time, credit) \
+		const data = (await sql.query`INSERT INTO reservations (userid, tableid, date, time, guests, credit) \
 		OUTPUT INSERTED.* VALUES \
-		(${req.session.userid}, ${req.body.tableid}, ${req.body.date}, ${req.body.time}, ${req.body.guests}, ${req.body.credit||NULL})`).recordset[0];
+		(${req.body.userid}, ${req.body.tableid}, ${req.body.date}, ${req.body.time}, ${req.body.guests}, ${req.body.credit || null})`).recordset[0];
 		res.json(data);
 	} catch (error) {
 		next(error);

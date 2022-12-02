@@ -1,6 +1,7 @@
 var express = require('express');
 var reservationController = require('../controllers/reservationController')
 var router = express.Router();
+var session = require('express-session');
 
 router.get('/', reservationController.getReservations);
 

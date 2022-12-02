@@ -14,7 +14,6 @@ const ViewReservation = (navigate) => {
 		console.trace();
 		setError(err);
 	}
-
 	useEffect(()=>{
 		async function loadReservationInfo(){
 			const response = await fetch(`http://localhost:3001/reservations/${params.id}`, {method: "GET"}).then(res=>res.json()).catch(handleErr);

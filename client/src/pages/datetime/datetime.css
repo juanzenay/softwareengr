@@ -82,6 +82,10 @@
     background: #E1F0DE;
     border: 4px solid #000000;
     border-radius: 10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
 }
 
 .confirm_text{
@@ -91,10 +95,7 @@
     top: 9px;
     left: 9px;
     
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 32px;
+    
 }
 
 .num-guests{

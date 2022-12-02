@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { redirect } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import './checkout.css';
 
-const Checkout = ({navigate}) => {
-    let requireCredit = true
-    let signedIn = false
-    const today = new Date()
-    let data = {'guests': 1, 'date': today.getDate()+'-'+ today.getMonth() + '-' + today.getFullYear(), 'time':`${today.getHours()}:00`};
-    const [guests, setGuests] = useState(data.guests);
-    const [date, setDate] = useState(data.date);
-    const [time, setTime] = useState(data.time);
-    const [tableids, setTableids] = useState([1,3]);
+const Checkout = ({navigate, signedIn, loading}) => {
+    const location = useLocation();
+    const requireCredit = location.state.requireCredit;
+    const info = location.state.info;
+    const [guests, setGuests] = useState(location.state.guest_Number);
+    const [date, setDate] = useState(location.state.date);
+    const [time, setTime] = useState(location.state.time);
+    const [tableids, setTableids] = useState(location.state.tableids);
     const [ccname, setCCName] = useState('');
     const [ccnum, setCCNum] = useState('');
     const [cvv, setCVV] = useState('');
@@ -19,7 +20,9 @@ const Checkout = ({navigate}) => {
     const [password, setPassword] = useState('');
     const [ccdate, setCCDate] = useState(new Date());
     const [inputCredit, setInputCredit] = useState(false);
-    
+    const [error, setError] = useState('');
+
+
     const toggleInputCredit = (e) => {
         e.preventDefault();
 		e.stopPropagation();
@@ -32,16 +35,49 @@ const Checkout = ({navigate}) => {
         return fetch(`http://localhost:3001/accounts`, {
             method: 'POST',
             cache: 'no-cache',
-            credentials: 'same-origin',
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 username: username,
                 email: email,
-                password: password
+                password: password,
             })
         }).then(res => res.json())
             .then(response => {
-                console.log('Success: ', response);
+                if(response === 'Email already exists' || response === 'Username already exists'){
+                    setError(response);
+                }else{
+                    fetch(`http://localhost:3001/session/login`, {
+                        method: 'POST',
+                        cache: 'no-cache',
+                        credentials: 'include',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            username: username,
+                            password: password
+                        })
+                    }).then(res2 => res2.json())
+                        .then(response2 => {
+                            console.log(response2);
+                            signedIn=response.userid;
+                            fetch(`http://localhost:3001/users`, {
+                                method: 'POST',
+                                cache: 'no-cache',
+                                credentials: 'include',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    userid: signedIn,
+                                    name: info.name,
+                                    address: info.address,
+                                    phone: info.phone
+                                })
+                            })
+                            window.location.reload();
+                        })
+                        .catch(error2 => {
+                            console.log(error2);
+                    });
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -54,20 +90,19 @@ const Checkout = ({navigate}) => {
         return fetch(`http://localhost:3001/reservations`, {
             method: 'POST',
             cache: 'no-cache',
-            credentials: 'same-origin',
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+                userid: signedIn,
+                tableid: tableids,
                 guests: guests,
                 date: date,
                 time: time,
-                tableid: tableids,
                 credit: ccnum
-
             })
         }).then(res => res.json())
             .then(response => {
-                console.log('Success: ', response);
-                navigate(`/reservation/${response}`);
+                navigate(`/reservation/${response.reservationid}`);
             })
             .catch(error => {
                 console.log(error);
@@ -101,12 +136,11 @@ const Checkout = ({navigate}) => {
                             <label className="checkout-label">Time: {time}</label>		
                         </div>
                     </div>	
-                    {!signedIn && 
+                    {signedIn!=null || loading || 
                         <div className="checkout-account-content">
                             <div className='checkout-content'>
                                 <label className="checkout-account-label" >Create an account to save your reservation</label>
-                                    <div className="checkout-content"></div>
-
+                                    <div className="checkout-content"><label className="checkout-account-label" style={{textDecoration:'underline', color:'red'}}>{error}</label></div>
                                 <div className="checkout-content">
                                     <label className="checkout-account-label">Email: </label>
                                     <input

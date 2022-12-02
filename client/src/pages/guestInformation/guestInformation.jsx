@@ -5,7 +5,7 @@ import './guestInformation.css';
 const GuestInfo = ({navigate}) => {
 
     const[guest_Name, setGuestName] = useState('');
-    const[guest_Number, setGuestNumber] = useState('');//
+    //const[guest_Number, setGuestNumber] = useState('');
     const[guest_Address, setGuestAddress] = useState('');
     const[guest_Phone, setGuestPhone] = useState('');
 
@@ -13,7 +13,7 @@ const GuestInfo = ({navigate}) => {
         console.log('handleSubmit ran');
         event.preventDefault();
         console.log('Name:', guest_Name);
-        console.log('# of Guests:', guest_Number);//
+//        console.log('# of Guests:', guest_Number);
         console.log('Address:', guest_Address);
         console.log('Phone:', guest_Phone);
     };
@@ -60,7 +60,7 @@ const GuestInfo = ({navigate}) => {
                                             onChange={event => setGuestPhone(event.target.value)}
                                         /><br/><br/>
                         </div>
-                        <button className="standard-button" onClick={() => navigate('/datetime')}>Submit Info</button>
+                        <button className="standard-button" onClick={() => navigate('/datetime', {state:{name:guest_Name, address:guest_Address, phone:guest_Phone}})}>Submit Info</button>
                     </form>
                 </div>
             </div>

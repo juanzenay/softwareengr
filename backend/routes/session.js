@@ -1,21 +1,34 @@
 var express = require('express');
 var router = express.Router();
 var session = require('express-session');
+var cookieParser = require('cookie-parser');
+
+var accountController = require('../controllers/accountController')
+
+router.use(cookieParser('123'));
+
+router.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        saveUninitialized: true,
+        resave: true,
+      
+}))
 
 router.get('/', (req, res) => {
-    if( res.session.userid != null){
-        res.json(true);
+    if(req.session.userid != null){
+        res.json(req.session.userid);
     }else{
         res.json(false);
     }
+   
 })
 
-router.post('/', (req, res) => {
-  res.session.userid = req.body.userid;
-})
+router.post('/login/', accountController.getAccountByUsername );
 
-router.delete('/', (req, res) => {
-    res.session.userid = null;
+router.delete('/logout/', (req, res) => {
+    req.session.userid = null;
+    res.send('Deleted');
 })
 
 module.exports = router;
